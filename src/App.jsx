@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function App() {
   const [buttonColor, setButtonColor] = useState("red");
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const newButtonColor = buttonColor === "red" ? "blue" : "red";
 
@@ -13,14 +13,16 @@ function App() {
           backgroundColor: buttonColor,
         }}
         onClick={() => setButtonColor(newButtonColor)}
-        disabled={isEnabled}
+        disabled={disabled}
       >
         Change to {newButtonColor}
       </button>
       <input
         type="checkbox"
         role="checkbox"
-        onClick={() => setIsEnabled(!isEnabled)}
+        id="enable-button-checkbox"
+        aria-checked={disabled}
+        onClick={(e) => setDisabled(e.target.checked)}
       />
     </div>
   );
